@@ -1,7 +1,7 @@
-# Data dictionary
+# Dicionário dos dados
 
 
-|    | Name                       | Description                                                                                                                                                    |
+|    | Nome                       | Descrição                                                                                                                                                    |
 |---:|:---------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |  0 | Age                        | Numerical Value                                                                                                                                                |
 |  1 | Attrition                  | Employee leaving the company - Text - No, Yes                                                                                                                     |

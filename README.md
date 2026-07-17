@@ -8,14 +8,20 @@
 ![Status](https://img.shields.io/badge/Status-Concluído-success)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 # IBM Employee Attrition Prediction
-A Machine Learning application to predict employee attrition using the IBM HR Analytics dataset.
+Uma aplicação de aprendizado de máquina para prever a rotatividade de funcionários utilizando o conjunto de dados IBM HR Analytics. Disponível no [Kaggle](https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset/data).
 
-<img src="relatorios/gif_ibm.gif" width="500" height="450">
+<img src="relatorios/gif_ibm.gif" width="600" height="450">
 
 ## Interação com o aplicativo web
 O aplicativo web foi feito com [Streamlit](https://streamlit.io)
 
 [![Streamlit App](https://img.shields.io/badge/STREAMLIT-APP-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://projeto-ibm-attrition.streamlit.app/)
+
+## Orientações a respeito do projeto
+##### Dentro da pasta `referencias` possue 3 arquivos:
+- `01_sobre_a_base.md:` Arquivo com todos os detalhes a respeito da base de dados.
+- `02_dicionario_de_dados.md:` Arquivo com todos os detalhes a respeito das colunas da base e seus tipos.
+- `03_organização_do_projeto.md` Arquivo com orientações a respeito da organização das pastas e arquivos do projeto.
 
 ## Conversão dos coeficientes para Odds Ratio
 
