@@ -1,86 +1,119 @@
-# Modelo de projeto de ciência de dados
+![Python](https://img.shields.io/badge/Python-3.14+-blue?logo=python)
+![Pandas](https://img.shields.io/badge/Pandas-3.0+-150458?logo=pandas)
+![NumPy](https://img.shields.io/badge/NumPy-2.4+-0132431?logo=numpy)
+![Seaborn](https://img.shields.io/badge/Seaborn-0.13-purple)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-orange?logo=scikitlearn)
+![LogisticRegression](https://img.shields.io/badge/LogisticRegression-Model-green)
+![Streamlit](https://img.shields.io/badge/Streamlit-Web_App-FF4B4B?logo=streamlit)
+![Status](https://img.shields.io/badge/Status-Concluído-success)
+![License](https://img.shields.io/badge/License-MIT-blue)
+# IBM Employee Attrition Prediction
+A Machine Learning application to predict employee attrition using the IBM HR Analytics dataset.
 
-Modelo de projeto de ciência de dados para ser utilizado como referência em projetos
-futuros. Desenvolvido por mim, [Francisco Bustamante](https://github.com/chicolucio),
-para alunos iniciantes em ciência de dados de meus cursos e mentorias.
+<img src="relatorios/gif_ibm.gif" width="500" height="450">
 
-Inspiração: [Cookiecutter Data Science](https://drivendata.github.io/cookiecutter-data-science/)
+## Interação com o aplicativo web
+O aplicativo web foi feito com [Streamlit](https://streamlit.io)
 
-Clique no botão **Use this template** para criar um novo repositório com base neste modelo.
+[![Streamlit App](https://img.shields.io/badge/STREAMLIT-APP-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://seu-app.streamlit.app)
 
-## Organização do projeto
+## Conversão dos coeficientes para Odds Ratio
 
-```
-├── .env               <- Arquivo de variáveis de ambiente (não versionar)
-├── .gitignore         <- Arquivos e diretórios a serem ignorados pelo Git
-├── ambiente.yml       <- O arquivo de requisitos para reproduzir o ambiente de análise
-├── LICENSE            <- Licença de código aberto se uma for escolhida
-├── README.md          <- README principal para desenvolvedores que usam este projeto.
-|
-├── dados              <- Arquivos de dados para o projeto.
-|
-├── modelos            <- Modelos treinados e serializados, previsões de modelos ou resumos de modelos
-|
-├── notebooks          <- Cadernos Jupyter. A convenção de nomenclatura é um número (para ordenação),
-│                         as iniciais do criador e uma descrição curta separada por `-`, por exemplo
-│                         `01-fb-exploracao-inicial-de-dados`.
-│
-|   └──src             <- Código-fonte para uso neste projeto.
-|      │
-|      ├── __init__.py  <- Torna um módulo Python
-|      ├── config.py    <- Configurações básicas do projeto
-|      └── graficos.py  <- Scripts para criar visualizações exploratórias e orientadas a resultados
-|
-├── referencias        <- Dicionários de dados, manuais e todos os outros materiais explicativos.
-|
-├── relatorios         <- Análises geradas em HTML, PDF, LaTeX, etc.
-│   └── imagens        <- Gráficos e figuras gerados para serem usados em relatórios
-```
+Após analisar os coeficientes da Regressão Logística, foi convertido de **Logg-Odds** para **Odds Ratio**, tornando sua interpretação mais intuitiva.
 
-## Configuração do ambiente
+### Por que fazer essa conversão?
 
-1. Faça o clone do repositório que será criado a partir deste modelo.
+Os coeficientes da Regressão Logística são calculados na escala de **log-odds**, o que dificulta sua interpretação direta.
 
-    ```bash
-    git clone ENDERECO_DO_REPOSITORIO
-    ```
+Ao aplicar o `exponencial dos coeficientes`, os coeficientes passam a representar o **Odds Ratio**, indicando quanto as chances de ocorrência do evento aumentam ou diminuem.
 
-2. Crie um ambiente virtual para o seu projeto utilizando o gerenciador de ambientes de sua preferência.
+- **Coeficientes > 1:** Aumenta as chances do evento.
+- **Coeficientes = 1:** Não afeta as chances.
+- **Coeficientes < 1:** Diminui as chances do evento ocorrer.
 
-    a. Caso esteja utilizando o `conda`, exporte as dependências do ambiente para o arquivo `ambiente.yml`:
+### Objetivo
 
-      ```bash
-      conda env export > ambiente.yml
-      ```
+A conversão para **Odds Ratio** facilita a interpretação dos resultados, permitindo entender de forma mais clara o impacto de cada variável na probabilidade de ocorrência do evento estudado.
+Como resultado tivemos o coeficiente `OverTime` como maior impacto no evento estudado.
 
-    b. Caso esteja utilizando outro gerenciador de ambientes, exporte as dependências
-    para o arquivo `requirements.txt` ou outro formato de sua preferência. Adicione o
-    arquivo ao controle de versão, removendo o arquivo `ambiente.yml`.
+![Coeficientes Odds](relatorios/imagens/coeficientes_odds.png)
 
-3. Verifique o arquivo `notebooks/01-fb-exemplo.ipynb` para exemplos
-de uso do código.
-4. Renomeie o arquivo `notebooks/01-fb-exemplo.ipynb` para um nome
-mais apropriado ao seu projeto. E siga a convenção de nomenclatura para os demais
-notebooks.
-5. Remova arquivos de exemplo e adicione os arquivos de dados e notebooks do seu
-projeto.
-6. Verifique o arquivo `notebooks/src/config.py` para configurações básicas do projeto.
-Modifique conforme necessário, adicionando ou removendo caminhos de arquivos e
-diretórios.
-7. Atualize o arquivo `referencias/01_dicionario_de_dados.md` com o dicionário de dados
-do seu projeto.
-8. Atualize o `README.md` com informações sobre o seu projeto.
-9. Adicione uma licença ao projeto. Clique
-[aqui](https://docs.github.com/pt/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository)
-se precisar de ajuda para escolher uma licença.
-10. Renomeie o arquivo `.env.exemplo` para `.env`
-11. Adicione variáveis de ambiente sensíveis ao arquivo `.env`.
+O gráfico acima foi feito com a função `plot_coeficientes` que está em `notebooks/src/graficos`
 
-Por padrão, o arquivo `.gitignore` já está configurado para ignorar arquivos de dados e
-arquivos de Notebook (para aqueles que usam ferramentas como
-[Jupytext](https://jupytext.readthedocs.io/en/latest/) e similares). Adicione ou remova
-outros arquivos e diretórios do `.gitignore` conforme necessário. Caso deseje adicionar
-forçadamente um Notebook ao controle de versão, faça um commit forçado com o
-comando `git add --force NOME_DO_ARQUIVO.ipynb`.
 
-Para mais informações sobre como usar Git e GitHub, [clique aqui](https://cienciaprogramada.com.br/2021/09/guia-definitivo-git-github/). Sobre ambientes virtuais, [clique aqui](https://cienciaprogramada.com.br/2020/08/ambiente-virtual-projeto-python/).
+
+## O que foi desenvolvido neste projeto?
+
+### 1. Análise Exploratória dos Dados (EDA)
+
+Nesta etapa foi realizada uma análise completa do conjunto de dados para compreender suas características e preparar as informações para a modelagem.
+
+As principais atividades foram:
+
+* Análise das variáveis e seus respectivos tipos de dados.
+* Remoção de colunas que não agregavam valor ao modelo.
+* Identificação do desbalanceamento da variável alvo (*Attrition*).
+* Separação das variáveis categóricas (ordenadas e não ordenadas) e numéricas.
+* Utilização de *list comprehension* para seleção automática das colunas numéricas.
+* Construção de histogramas para analisar a distribuição das variáveis numéricas.
+* Criação de boxplots para identificação de dispersão e possíveis outliers.
+* Comparação das variáveis numéricas em relação à variável alvo por meio de boxplots.
+* Geração de um mapa de calor (*heatmap*) para analisar a correlação entre as variáveis.
+
+---
+
+### 2. Pré-processamento e Modelagem
+
+Após a análise exploratória, foi construída uma pipeline completa de preparação dos dados para treinamento dos modelos.
+
+As principais etapas incluíram:
+
+* Separação das variáveis preditoras (**X**) e da variável alvo (**y**).
+* Codificação da variável alvo utilizando **LabelEncoder**.
+* Aplicação de **MinMaxScaler** para normalização das variáveis numéricas.
+* Aplicação do **PowerTransformer** para aproximar determinadas distribuições de uma curva normal.
+* Construção de pipelines de pré-processamento para diferentes algoritmos.
+* Utilização de **K-Fold Cross Validation** para uma avaliação mais robusta dos modelos.
+* Cálculo da proporção entre as classes para lidar com o desbalanceamento da variável alvo.
+* Treinamento e comparação de diferentes algoritmos de Machine Learning.
+* Organização automática dos resultados em um DataFrame para facilitar a comparação entre os modelos.
+
+---
+
+### 3. Seleção e Otimização do Modelo
+
+Os modelos foram comparados utilizando métricas de classificação, priorizando o desempenho em um cenário com classes desbalanceadas.
+
+As principais decisões foram:
+
+* Comparação dos modelos utilizando a métrica **AUPRC (Área sob a Curva Precision-Recall)**.
+* Utilização do **Recall** como critério de desempate entre modelos com desempenho semelhante.
+* Seleção da **Regressão Logística (Logistic Regression)** como modelo final.
+* Otimização dos hiperparâmetros com **GridSearchCV**, buscando automaticamente a melhor combinação de parâmetros.
+
+---
+
+### 4. Interpretabilidade do Modelo
+
+Além do desempenho, foi realizada uma análise da influência de cada variável na decisão do modelo.
+
+Para isso:
+
+* Os coeficientes do modelo foram transformados em um DataFrame.
+* Foi criado um gráfico para visualizar a importância das variáveis.
+* A interpretação dos coeficientes permitiu identificar:
+
+  * **Coeficientes positivos:** aumentam a probabilidade de desligamento do funcionário.
+  * **Coeficientes negativos:** reduzem essa probabilidade.
+  * **Quanto maior o valor absoluto do coeficiente, maior a influência da variável na previsão do modelo.**
+
+Essa etapa tornou o modelo mais interpretável, permitindo compreender quais fatores exercem maior impacto na previsão de atrito dos colaboradores.
+
+
+
+## Considerações finais
+Este projeto foi desenvolvido durante a formação em Ciência de Dados da [HashtagTreinamentos](https://www.hashtagtreinamentos.com/) e conduzido pelo professor [Francisco Bustamente](https://www.linkedin.com/in/flsbustamante/). 
+
+ Ao longo do desenvolvimento, foram aplicados diversos conceitos fundamentais de Ciência de Dados e Machine Learning, incluindo análise exploratória de dados, pré-processamento, construção e avaliação de modelos, otimização de hiperparâmetros e interpretação dos dos resultados. 
+
+ O projeto teve caráter didático, servindo como uma oportunidade para consolidar os conhecimentos adquiridos durante a formação e colocá-los em prática.
