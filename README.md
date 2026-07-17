@@ -15,7 +15,7 @@ A Machine Learning application to predict employee attrition using the IBM HR An
 ## Interação com o aplicativo web
 O aplicativo web foi feito com [Streamlit](https://streamlit.io)
 
-[![Streamlit App](https://img.shields.io/badge/STREAMLIT-APP-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://seu-app.streamlit.app)
+[![Streamlit App](https://img.shields.io/badge/STREAMLIT-APP-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://projeto-ibm-attrition.streamlit.app/)
 
 ## Conversão dos coeficientes para Odds Ratio
 
